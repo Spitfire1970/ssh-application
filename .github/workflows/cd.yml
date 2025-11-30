@@ -28,7 +28,7 @@ jobs:
             # Extract and replace
             tar -xzvf ssh-app-linux-amd64.tar.gz
             mv linux-amd64/server ./server
-            rm -rf linux-amd64 ss-app-linux-amd64.tar.gz
+            rm -rf linux-amd64 ssh-app-linux-amd64.tar.gz
             
             # Start the new version
             nohup ./server > server.log 2>&1 &
