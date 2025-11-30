@@ -31,4 +31,5 @@ jobs:
             rm -rf linux-amd64 ssh-app-linux-amd64.tar.gz
             
             # Start the new version
-            nohup ./server > server.log 2>&1 &
+            setsid ./server > server.log 2>&1 &
+            sleep 2
