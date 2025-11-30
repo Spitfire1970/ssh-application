@@ -16,8 +16,8 @@ jobs:
           port: 224
           script: |
             echo "Starting deployment..."
-            
             pkill -f "ssh-application/server" || true
+            
             
             cd ~/ssh-application
             
