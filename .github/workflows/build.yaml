@@ -32,8 +32,8 @@ jobs:
       - name: Compress Binaries
         run: |
           cd build
-          tar -czvf portfolio-linux-amd64.tar.gz linux-amd64
-          tar -czvf portfolio-linux-arm64.tar.gz linux-arm64
+          tar -czvf ssh-app-linux-amd64.tar.gz linux-amd64
+          tar -czvf ssh-app-linux-arm64.tar.gz linux-arm64
 
       - name: Upload Binary Artifacts
         uses: actions/upload-artifact@v4
@@ -53,5 +53,5 @@ jobs:
           name: "Release ${{ env.RELEASE_TAG }}"
           draft: true
           artifacts: |
-            build/portfolio-linux-amd64.tar.gz
-            build/portfolio-linux-arm64.tar.gz
+            build/ssh-app-linux-amd64.tar.gz
+            build/ssh-app-linux-arm64.tar.gz
