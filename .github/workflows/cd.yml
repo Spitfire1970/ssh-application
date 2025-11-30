@@ -9,18 +9,15 @@ jobs:
       - name: Deploy to Server
         uses: appleboy/ssh-action@v1
         with:
-          debug: true
-          script_stop: true
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 224
+          debug: true
           envs: GITHUB_TOKEN,GITHUB_REPOSITORY,TAG_NAME
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_REPOSITORY: ${{ github.repository }}
-          TAG_NAME: ${{ github.event.release.tag_name }}
           script: |
+            set -e
+            
             echo "Starting deployment..."
             
             pkill -f "ssh-application/[s]erver" || true
@@ -29,7 +26,6 @@ jobs:
             cd ~/ssh-application
 
             echo "Downloading release..."
-            
             curl -L -f -o ssh-app-linux-amd64.tar.gz \
               -H "Authorization: token ${GITHUB_TOKEN}" \
               "https://github.com/${GITHUB_REPOSITORY}/releases/download/${TAG_NAME}/ssh-app-linux-amd64.tar.gz"
@@ -42,8 +38,12 @@ jobs:
             rm -rf linux-amd64 ssh-app-linux-amd64.tar.gz
 
             echo "Starting server..."
-            
             nohup ./server > server.log 2>&1 < /dev/null &
             
             sleep 2
-            echo "Done!"
+            echo "Deployment Done!"
+
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          TAG_NAME: ${{ github.event.release.tag_name }}
