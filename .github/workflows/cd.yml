@@ -2,7 +2,6 @@ name: Deploy on Release
 on:
   release:
     types: [published]
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -14,23 +13,35 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 224
+          envs: GITHUB_TOKEN,GITHUB_REPOSITORY,TAG_NAME
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          TAG_NAME: ${{ github.event.release.tag_name }}
           script: |
             echo "Starting deployment..."
-            pkill -f "ssh-application/server" || true
             
-            
+            pkill -f "ssh-application/[s]erver" || true
+
+            mkdir -p ~/ssh-application
             cd ~/ssh-application
-            
+
             echo "Downloading release..."
-            curl -L -o ssh-app-linux-amd64.tar.gz \
-              "https://github.com/${{ github.repository }}/releases/download/${{ github.event.release.tag_name }}/ssh-app-linux-amd64.tar.gz"
             
+            curl -L -f -o ssh-app-linux-amd64.tar.gz \
+              -H "Authorization: token ${GITHUB_TOKEN}" \
+              "https://github.com/${GITHUB_REPOSITORY}/releases/download/${TAG_NAME}/ssh-app-linux-amd64.tar.gz"
+
             echo "Extracting..."
             tar -xzvf ssh-app-linux-amd64.tar.gz
+            
+            chmod +x linux-amd64/server
             mv linux-amd64/server ./server
             rm -rf linux-amd64 ssh-app-linux-amd64.tar.gz
-            
+
             echo "Starting server..."
-            setsid ./server > server.log 2>&1 &
+            
+            nohup ./server > server.log 2>&1 < /dev/null &
+            
             sleep 2
             echo "Done!"
