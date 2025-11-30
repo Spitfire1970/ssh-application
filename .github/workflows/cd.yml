@@ -15,21 +15,22 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 224
           script: |
-            # Stop the running application
-            pkill -f server || true
+            echo "Starting deployment..."
             
-            # Navigate to app directory
+            pkill -f "ssh-application/server" || true
+            
             cd ~/ssh-application
             
-            # Download the latest release
+            echo "Downloading release..."
             curl -L -o ssh-app-linux-amd64.tar.gz \
               "https://github.com/${{ github.repository }}/releases/download/${{ github.event.release.tag_name }}/ssh-app-linux-amd64.tar.gz"
             
-            # Extract and replace
+            echo "Extracting..."
             tar -xzvf ssh-app-linux-amd64.tar.gz
             mv linux-amd64/server ./server
             rm -rf linux-amd64 ssh-app-linux-amd64.tar.gz
             
-            # Start the new version
+            echo "Starting server..."
             setsid ./server > server.log 2>&1 &
             sleep 2
+            echo "Done!"
