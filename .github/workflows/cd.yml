@@ -20,7 +20,7 @@ jobs:
             
             echo "Starting deployment..."
             
-            pkill -f "ssh-application/[s]erver" || true
+            pkill -u ${{ secrets.SERVER_USER }} -x server || true
 
             mkdir -p ~/ssh-application
             cd ~/ssh-application
