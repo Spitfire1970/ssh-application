@@ -39,16 +39,12 @@ jobs:
           name: binaries
           path: build/*.tar.gz
 
-      - name: Generate Release Tag
-        id: generate_tag
-        run: echo "RELEASE_TAG=$(date +'%d-%m-%Y')" >> $GITHUB_ENV
-
       - name: Create GitHub Release
         uses: ncipollo/release-action@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ env.RELEASE_TAG }}
-          name: "Release ${{ env.RELEASE_TAG }}"
+          tag: "v1.0.${{ github.run_number }}"
+          name: "Release v1.0.${{ github.run_number }}"
           draft: true
           artifacts: |
             build/ssh-app-linux-amd64.tar.gz
