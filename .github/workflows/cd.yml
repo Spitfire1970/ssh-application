@@ -37,6 +37,8 @@ jobs:
             mv linux-amd64/server ./server
             rm -rf linux-amd64 ssh-app-linux-amd64.tar.gz
 
+            sudo setcap cap_net_bind_service=+ep ./server
+
             echo "Starting server..."
             nohup ./server > server.log 2>&1 < /dev/null &
             
