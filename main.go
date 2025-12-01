@@ -177,7 +177,7 @@ I'm fluent in Scala, Python, Go, and, Typescript. Can work with C.
 		m.subtleStyle.Copy().Foreground(lipgloss.Color("13")).Render("GitHub         https://github.com/Spitfire1970"),
 		m.subtleStyle.Copy().Foreground(lipgloss.Color("33")).Render("Linkedin       https://linkedin.com/in/nakul404"),
 		m.subtleStyle.Copy().Foreground(lipgloss.Color("39")).Render("CP             https://leetcode.com/u/Spitfire1970/"),
-		m.subtleStyle.Copy().Foreground(lipgloss.Color("222")).Render("Clicky stuff   https://linktr.ee/nakul_goyal"),
+		m.subtleStyle.Copy().Foreground(lipgloss.Color("222")).Render("Clicky stuffs  https://linktr.ee/nakul_goyal"),
 
 	)
 
