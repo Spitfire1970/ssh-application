@@ -160,15 +160,21 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 func (m model) View() string {
 
 	about := m.aboutStyle.Render(fmt.Sprintf(strings.TrimSpace(`
-Hi I'm %s,
+I'm %s,
 
-A software engineer specialized in many software domains
-including Web, Backend, ML (not just LLMs), and, DevOps.
+I enjoy the process of converting processors and hard disks sitting
+in racks to useful applications for humans!
 
-On weekends, I am... a recreational programmer.
+Foremost, I enjoy learning how things work, and I prefer to do so by
+tinkering and reading. I think understanding is fundamental to programming,
+and although I am proponent of using LLM-based tools to aid in this
+process, I am naturally not the biggest fan of slop code (I hate it).
 
-I'm fluent in Scala, Python, Go, and, Typescript. Can work with C.
-`), m.aboutNameStyle.Render("Nakul Goyal")))
+I've used Scala, Typescript, Python, C++, and Go but I always lean on
+syscall/stdlib in C when I'm trying to learning something.
+
+One thing to know about me is that I am quite the enemy of complacency.
+`), m.aboutNameStyle.Render("Nakul")))
 
 	tpl := m.subtleStyle.Render("Hint: q, ctrl+c: quit")
 
