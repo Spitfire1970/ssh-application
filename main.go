@@ -171,7 +171,7 @@ and although I am a proponent of using LLM-based tools to aid in this
 process, I am naturally not the biggest fan of slop code (I hate it).
 
 I've used Scala, Typescript, Python, C++, and Go but I always lean on
-syscall/stdlib in C when I'm trying to learning something.
+syscalls/stdlib in C when I'm trying to learning something.
 
 One thing to know about me is that I am quite the enemy of complacency.
 `), m.aboutNameStyle.Render("Nakul")))
