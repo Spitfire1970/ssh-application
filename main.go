@@ -167,7 +167,7 @@ in racks to useful applications for humans!
 
 Foremost, I enjoy learning how things work, and I prefer to do so by
 tinkering and reading. I think understanding is fundamental to programming,
-and although I am proponent of using LLM-based tools to aid in this
+and although I am a proponent of using LLM-based tools to aid in this
 process, I am naturally not the biggest fan of slop code (I hate it).
 
 I've used Scala, Typescript, Python, C++, and Go but I always lean on
