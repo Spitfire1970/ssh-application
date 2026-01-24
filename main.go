@@ -168,12 +168,12 @@ in racks to useful applications for humans!
 Foremost, I enjoy learning how things work, and I prefer to do so by
 tinkering and reading. I think understanding is fundamental to programming,
 and although I am a proponent of using LLM-based tools to aid in this
-process, I am naturally not the biggest fan of slop code (I hate it).
+process, I have low tolerance for slop code.
 
-I've used Scala, Typescript, Python, C++, and Go but I always lean on
-syscalls/stdlib in C when I'm trying to learning something.
+I've used Scala, Typescript, Python, C++, and Go, but I try to ground my
+learnings in C and raw syscalls when I need to dissect how something works.
 
-One thing to know about me is that I am quite the enemy of complacency.
+I view complacency as the enemy of progress.
 `), m.aboutNameStyle.Render("Nakul")))
 
 	tpl := m.subtleStyle.Render("Hint: q, ctrl+c: quit")
